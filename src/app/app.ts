@@ -1,12 +1,19 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
+import { NavbarComponent } from './shared/layout/navbar/navbar.component';
+import { FooterComponent } from './shared/layout/footer/footer.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterOutlet, NavbarComponent, FooterComponent],
+  template: `
+    <kv-navbar />
+    <main>
+      <router-outlet />
+    </main>
+    <kv-footer />
+  `,
 })
-export class App {
-  protected readonly title = signal('KVerse-frontend');
-}
+export class App {}
